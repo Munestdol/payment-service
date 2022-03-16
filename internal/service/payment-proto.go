@@ -11,12 +11,10 @@ import (
 
 func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClient, *grpc.ClientConn, context.Context, error) {
 	ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
-	fmt.Println(s.cfg.GRPCFD.Host)
-	fmt.Println(s.cfg.GRPCFD.Port)
 	conn, err := grpc.DialContext(ctx, fmt.Sprintf("%s:%s", s.cfg.GRPCFD.Host, s.cfg.GRPCFD.Port), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Error().Err(err).Msg("error occurred while creating conn to FD")
-
+		fmt.Println(err)
 		return nil, nil, ctx, err
 	}
 
@@ -24,6 +22,21 @@ func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClie
 
 	return orderUpdateClient, conn, ctx, nil
 }
+
+//make con to RA and test all shit
+//func (s *PaymentService) CreateConnectionRA() (paymentservice.PaymentServiceClient, *grpc.ClientConn, context.Context, error) {
+//	ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
+//	conn, err := grpc.DialContext(ctx, fmt.Sprintf("%s:%s", s.cfg.GRPCRA.Host, s.cfg.GRPCRA.Port), grpc.WithInsecure(), grpc.WithBlock())
+//	if err != nil {
+//		log.Error().Err(err).Msg("error occurred while creating conn to FD")
+//
+//		return nil, nil, ctx, err
+//	}
+//
+//	orderUpdateClient := paymentservice.NewPaymentServiceClient(conn)
+//
+//	return orderUpdateClient, conn, ctx, nil
+//}
 
 func (s *PaymentService) ChangeStatusFD(answer bool, id string) error {
 

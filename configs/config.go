@@ -15,6 +15,7 @@ type (
 		HTTP        HTTPConfig
 		GRPC        GRPCConfig
 		GRPCFD      GRPCConfigFD
+		GRPCRA      GRPCConfigRA
 	}
 
 	PostgresConfig struct {
@@ -46,6 +47,11 @@ type (
 	}
 
 	GRPCConfigFD struct {
+		Host string
+		Port string
+	}
+
+	GRPCConfigRA struct {
 		Host string
 		Port string
 	}
@@ -89,6 +95,14 @@ func unmarshal(cfg *Config) error {
 	}
 
 	if err := viper.UnmarshalKey("grpc", &cfg.GRPC); err != nil {
+		return err
+	}
+
+	if err := viper.UnmarshalKey("grpcFD", &cfg.GRPCFD); err != nil {
+		return err
+	}
+
+	if err := viper.UnmarshalKey("grpcRA", &cfg.GRPCRA); err != nil {
 		return err
 	}
 

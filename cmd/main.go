@@ -18,6 +18,13 @@ import (
 	"time"
 )
 
+// @title Payment-Service API
+// @version 1.0
+// @description REST API for Payment
+
+// @host 165.232.68.67:8082
+// @BasePath /
+
 func main() {
 	cfg, err := config.Init("./configs")
 	if err != nil {
@@ -40,17 +47,6 @@ func main() {
 		}
 	}()
 
-	//repoGRPC := protorepository.NewRepository(db)
-	//servicesGRPC := proto.NewService(repoGRPC)
-	srvGRPC := server.NewServerGRPC()
-	//srvGRPC.RegisterServices(servicesGRPC)
-
-	go func() {
-		if err := srvGRPC.Run(cfg); err != nil {
-			log.Error().Err(err).Msg("error occurred while running gRPC server")
-		}
-	}()
-
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
 
@@ -64,8 +60,6 @@ func main() {
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatal().Err(err).Msg("failed to stop server")
 	}
-
-	srvGRPC.Shutdown()
 
 	if err := db.Close(); err != nil {
 		log.Fatal().Err(err).Msg("failed to stop connection db")

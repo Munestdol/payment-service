@@ -29,7 +29,7 @@ func (s *PaymentService) CreateTrasactions(input domain.PaymentInfo) (domain.Tra
 	transaction.Status = status
 	transaction.TotalPrice = input.TotalPrice
 	answerGrps := s.BoolStatus(transaction)
-	s.ChangeStatusFD(answerGrps, transaction.OrderID)
+	s.ChangeStatusFD(answerGrps, input.OrderId)
 
 	return transaction, err
 }
@@ -46,7 +46,7 @@ func (s *PaymentService) GetPaymentStatus(cvv string) string {
 }
 
 func (s *PaymentService) ChangeCardNumber(number string) string {
-	newNumber := "**** **** **** " + number[11:]
+	newNumber := "**** **** **** " + number[12:]
 	return newNumber
 }
 

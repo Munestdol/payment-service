@@ -8,7 +8,6 @@ import (
 
 type Payment interface {
 	CreateTrasactions(input domain.PaymentInfo) (domain.Transaction, error)
-	BoolStatus(input domain.Transaction) bool
 }
 
 type Service struct {

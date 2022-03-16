@@ -1,4 +1,92 @@
+basePath: /
+definitions:
+  domain.PaymentInfo:
+    properties:
+      cardDate:
+        type: string
+      cardLastname:
+        type: string
+      cardName:
+        type: string
+      cardNumber:
+        type: string
+      cvv:
+        type: string
+      orderId:
+        type: string
+      totalPrice:
+        type: number
+      userId:
+        type: integer
+    required:
+    - cardLastname
+    - cardName
+    - cardNumber
+    - cvv
+    - orderId
+    - totalPrice
+    - userId
+    type: object
+  domain.Transaction:
+    properties:
+      _:
+        type: string
+      card_number:
+        type: string
+      date:
+        type: string
+      status:
+        type: string
+      totalPrice:
+        type: number
+    type: object
+  handler.response:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.transactionInfo:
+    properties:
+      data:
+        $ref: '#/definitions/domain.Transaction'
+    type: object
+host: 165.232.68.67:8082
 info:
   contact: {}
-paths: {}
+  description: REST API for Payment
+  title: Payment-Service API
+  version: "1.0"
+paths:
+  /payment/create:
+    post:
+      description: Create new transaction
+      parameters:
+      - description: Payment info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PaymentInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.transactionInfo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      summary: Create new transaction
+      tags:
+      - order
 swagger: "2.0"
