@@ -6,10 +6,14 @@ db:
   dbname: postgres
 
 http:
-  port: 80
+  port: 82
   MaxHeaderMegabytes: 1
   readTimeout: 10s
   writeTimeout: 10s
 
 grpc:
-  port: 50080
+  port: 58082
+
+grpcFD:
+  port: 58081
+  host: 165.232.68.67

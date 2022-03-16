@@ -1,4 +1,4 @@
-package config
+package configs
 
 import (
 	"github.com/joho/godotenv"
@@ -11,8 +11,10 @@ type (
 	Config struct {
 		Environment string
 		Postgres    PostgresConfig
+		FileStorage FileStorageConfig
 		HTTP        HTTPConfig
 		GRPC        GRPCConfig
+		GRPCFD      GRPCConfigFD
 	}
 
 	PostgresConfig struct {
@@ -24,6 +26,12 @@ type (
 		Password string
 	}
 
+	FileStorageConfig struct {
+		Endpoint  string
+		Bucket    string
+		AccessKey string
+		SecretKey string
+	}
 
 	HTTPConfig struct {
 		Host               string
@@ -34,9 +42,13 @@ type (
 	}
 
 	GRPCConfig struct {
-		Port               string
+		Port string
 	}
 
+	GRPCConfigFD struct {
+		Host string
+		Port string
+	}
 )
 
 func Init(configsDir string) (*Config, error) {
