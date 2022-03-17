@@ -10,7 +10,7 @@ import (
 )
 
 func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClient, *grpc.ClientConn, context.Context, error) {
-	ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
+	ctx, _ := context.WithTimeout(context.Background(), time.Second*10)
 	conn, err := grpc.DialContext(ctx, fmt.Sprintf("%s:%s", s.cfg.GRPCFD.Host, s.cfg.GRPCFD.Port), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Error().Err(err).Msg("error occurred while creating conn to FD")
