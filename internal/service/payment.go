@@ -30,7 +30,6 @@ func (s *PaymentService) CreateTrasactions(input domain.PaymentInfo) (domain.Tra
 	transaction.TotalPrice = input.TotalPrice
 	answerGrps := s.BoolStatus(transaction)
 	err = s.ChangeStatusFD(answerGrps, input.OrderId)
-
 	return transaction, err
 }
 
