@@ -14,7 +14,6 @@ func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClie
 	conn, err := grpc.DialContext(ctx, fmt.Sprintf("%s:%s", s.cfg.GRPCFD.Host, s.cfg.GRPCFD.Port), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Error().Err(err).Msg("error occurred while creating conn to FD")
-		fmt.Println(err)
 		return nil, nil, ctx, err
 	}
 

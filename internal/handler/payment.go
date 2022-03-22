@@ -2,8 +2,6 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
-	"github.com/rs/zerolog/log"
 	"net/http"
 	"payment-service/internal/domain"
 )
@@ -25,12 +23,12 @@ func (h *Handler) CreateTransactions(c *gin.Context) {
 		newResponse(c, http.StatusBadRequest, "invalid input body")
 		return
 	}
-	var validate = validator.New()
-	if err := validate.Struct(input); err != nil {
-		log.Error().Err(err).Msg("invalid values of fields")
-		newResponse(c, http.StatusBadRequest, "invalid values of fields")
-		return
-	}
+	//var validate = validator.New()
+	//if err := validate.Struct(input); err != nil {
+	//	log.Error().Err(err).Msg("invalid values of fields")
+	//	newResponse(c, http.StatusBadRequest, "invalid values of fields")
+	//	return
+	//}
 	transactInfo, err := h.services.Payment.CreateTrasactions(input)
 	if err != nil {
 		newResponse(c, http.StatusInternalServerError, err.Error())
@@ -40,4 +38,41 @@ func (h *Handler) CreateTransactions(c *gin.Context) {
 	c.JSON(http.StatusOK, transactionInfo{
 		Data: transactInfo,
 	})
+}
+
+func (h *Handler) MakePayment(c *gin.Context) {
+	var input domain.PaymentInfo
+	if err := c.BindJSON(&input); err != nil {
+		newResponse(c, http.StatusBadRequest, "invalid input body")
+		return
+	}
+	switch input.PaymentType {
+	case "cardonline":
+		transactInfo, err := h.services.Payment.CreateTrasactions(input)
+		if err != nil {
+			newResponse(c, http.StatusInternalServerError, err.Error())
+			return
+		}
+		c.JSON(http.StatusOK, transactionInfo{
+			Data: transactInfo,
+		})
+	case "card":
+		transactInfo, err := h.services.Payment.MakePayment(input)
+		if err != nil {
+			newResponse(c, http.StatusInternalServerError, err.Error())
+			return
+		}
+		c.JSON(http.StatusOK, payInfo{
+			Data: transactInfo,
+		})
+	case "cash":
+		transactInfo, err := h.services.Payment.MakePayment(input)
+		if err != nil {
+			newResponse(c, http.StatusInternalServerError, err.Error())
+			return
+		}
+		c.JSON(http.StatusOK, payInfo{
+			Data: transactInfo,
+		})
+	}
 }

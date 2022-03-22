@@ -9,11 +9,12 @@ type PaymentInfo struct {
 	CardLastName string  `json:"cardLastname" validate:"required,alpha"`
 	CardDate     string  `json:"cardDate"`
 	TotalPrice   float64 `json:"totalPrice" db:"cost" validate:"required"`
+	PaymentType  string  `json:"paymentType" db:"paymentType" validate:"required"`
 }
 
 type Transaction struct {
 	Id         string  `json:"_" db:"id"`
-	UserId     string  `json:"_" db:"user_id"`
+	UserId     int     `json:"_" db:"user_id"`
 	OrderID    string  `json:"_" db:"order_id"`
 	CardNumber string  `json:"card_number"`
 	Status     string  `json:"status" db:"status"`
