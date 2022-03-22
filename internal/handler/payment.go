@@ -34,7 +34,10 @@ func (h *Handler) CreateTransactions(c *gin.Context) {
 		newResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-
+	if transactInfo.Status == "canceled" {
+		newResponse(c, http.StatusBadRequest, "transaction - canceled")
+		return
+	}
 	c.JSON(http.StatusOK, transactionInfo{
 		Data: transactInfo,
 	})
@@ -53,6 +56,10 @@ func (h *Handler) MakePayment(c *gin.Context) {
 			newResponse(c, http.StatusInternalServerError, err.Error())
 			return
 		}
+		if transactInfo.Status == "canceled" {
+			newResponse(c, http.StatusBadRequest, "transaction - canceled")
+			return
+		}
 		c.JSON(http.StatusOK, transactionInfo{
 			Data: transactInfo,
 		})
@@ -62,6 +69,7 @@ func (h *Handler) MakePayment(c *gin.Context) {
 			newResponse(c, http.StatusInternalServerError, err.Error())
 			return
 		}
+
 		c.JSON(http.StatusOK, payInfo{
 			Data: transactInfo,
 		})

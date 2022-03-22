@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1f4cbd2b-a82c-494b-b466-fd02a635921a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/payment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/handler/handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/handler/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/handler/payment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/handler/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/handler/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/service/payment-proto.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/payment-proto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/service/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/payment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

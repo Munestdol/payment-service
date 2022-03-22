@@ -36,6 +36,7 @@ func (s *PaymentService) CreateTrasactions(input domain.PaymentInfo) (domain.Tra
 	}
 
 	status := s.GetPaymentStatus(input.CVV)
+
 	transaction, err := s.repo.CreateTrasactions(status, input)
 	if err != nil {
 		log.Error().Err(err).Msg("")
