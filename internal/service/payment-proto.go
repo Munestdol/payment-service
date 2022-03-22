@@ -22,7 +22,7 @@ func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClie
 	return orderUpdateClient, conn, ctx, nil
 }
 
-func (s *PaymentService) ChangeStatusFD(answer bool, id string) error {
+func (s *PaymentService) ChangeStatusFD(answer bool, id, paymentType string) error {
 
 	orderClientFD, conn, ctx, err := s.CreateConnectionFD()
 	if err != nil {
@@ -30,8 +30,9 @@ func (s *PaymentService) ChangeStatusFD(answer bool, id string) error {
 	}
 
 	updateOrder := &paymentservice.PaymentResult{
-		Answer:  answer,
-		IdOrder: id,
+		Answer:      answer,
+		IdOrder:     id,
+		PaymentType: paymentType,
 	}
 
 	if _, err = orderClientFD.ChangeStatus(ctx, updateOrder); err != nil {

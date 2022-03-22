@@ -43,6 +43,17 @@ func (h *Handler) CreateTransactions(c *gin.Context) {
 	})
 }
 
+// MakePayment godoc
+// @Summary Make payment
+// @Tags order
+// @Description Make payment
+// @Produce json
+// @Param input body domain.PaymentInfo true "Payment info"
+// @Success 200 {object} transactionInfo "ok"
+// @Failure 400 {object} response
+// @Failure 500 {object} response
+// @Failure default {object} response
+// @Router /payment/create [post]
 func (h *Handler) MakePayment(c *gin.Context) {
 	var input domain.PaymentInfo
 	if err := c.BindJSON(&input); err != nil {
