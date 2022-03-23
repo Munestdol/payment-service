@@ -9,16 +9,16 @@
     "host": "165.232.68.67:8082",
     "basePath": "/",
     "paths": {
-        "/payment/create": {
+        "/payment/": {
             "post": {
-                "description": "Create new transaction",
+                "description": "Make payment",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "order"
                 ],
-                "summary": "Create new transaction",
+                "summary": "Make payment",
                 "parameters": [
                     {
                         "description": "Payment info",
@@ -68,6 +68,7 @@
                 "cardNumber",
                 "cvv",
                 "orderId",
+                "paymentType",
                 "totalPrice",
                 "userId"
             ],
@@ -88,6 +89,9 @@
                     "type": "string"
                 },
                 "orderId": {
+                    "type": "string"
+                },
+                "paymentType": {
                     "type": "string"
                 },
                 "totalPrice": {

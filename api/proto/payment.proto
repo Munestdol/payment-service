@@ -10,4 +10,5 @@ service PaymentService {
 message PaymentResult{
   string IdOrder = 1;
   bool Answer = 2;
+  string PaymentType = 3;
 }

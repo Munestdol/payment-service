@@ -10,6 +10,9 @@ type transactionInfo struct {
 	Data domain.Transaction `json:"data"`
 }
 
+type payInfo struct {
+	Data string `json:"data"`
+}
 type response struct {
 	Message string `json:"message"`
 }

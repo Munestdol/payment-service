@@ -1,6 +1,9 @@
 package service
 
 import (
+	"errors"
+	"fmt"
+	"github.com/go-playground/validator/v10"
 	"github.com/rs/zerolog/log"
 	config "payment-service/configs"
 	"payment-service/internal/domain"
@@ -17,8 +20,24 @@ func NewPaymentService(repo repository.Payment, cfg *config.Config) *PaymentServ
 	return &PaymentService{repo: repo, cfg: cfg}
 }
 
+func (s *PaymentService) MakePayment(input domain.PaymentInfo) (string, error) {
+	massage := fmt.Sprintf("your order for the amount %v has been accepted", input.TotalPrice)
+	answerGrps := true
+
+	err := s.ChangeStatusFD(answerGrps, input.OrderId, input.PaymentType)
+	return massage, err
+}
+
 func (s *PaymentService) CreateTrasactions(input domain.PaymentInfo) (domain.Transaction, error) {
+	var transaction domain.Transaction
+	var validate = validator.New()
+	if err := validate.Struct(input); err != nil {
+		log.Error().Err(err).Msg("invalid values of fields")
+		return transaction, errors.New("invalid values of fields")
+	}
+
 	status := s.GetPaymentStatus(input.CVV)
+
 	transaction, err := s.repo.CreateTrasactions(status, input)
 	if err != nil {
 		log.Error().Err(err).Msg("")
@@ -29,7 +48,7 @@ func (s *PaymentService) CreateTrasactions(input domain.PaymentInfo) (domain.Tra
 	transaction.Status = status
 	transaction.TotalPrice = input.TotalPrice
 	answerGrps := s.BoolStatus(transaction)
-	err = s.ChangeStatusFD(answerGrps, input.OrderId)
+	err = s.ChangeStatusFD(answerGrps, input.OrderId, input.PaymentType)
 	return transaction, err
 }
 

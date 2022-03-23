@@ -8,6 +8,7 @@ import (
 
 type Payment interface {
 	CreateTrasactions(input domain.PaymentInfo) (domain.Transaction, error)
+	MakePayment(input domain.PaymentInfo) (string, error)
 }
 
 type Service struct {

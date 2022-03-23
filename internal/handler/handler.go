@@ -24,8 +24,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	payment := router.Group("/payment")
 	{
-
-		payment.POST("/create", h.CreateTransactions)
+		payment.POST("/", h.MakePayment)
 	}
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

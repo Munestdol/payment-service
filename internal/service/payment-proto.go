@@ -14,7 +14,6 @@ func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClie
 	conn, err := grpc.DialContext(ctx, fmt.Sprintf("%s:%s", s.cfg.GRPCFD.Host, s.cfg.GRPCFD.Port), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Error().Err(err).Msg("error occurred while creating conn to FD")
-		fmt.Println(err)
 		return nil, nil, ctx, err
 	}
 
@@ -23,7 +22,7 @@ func (s *PaymentService) CreateConnectionFD() (paymentservice.PaymentServiceClie
 	return orderUpdateClient, conn, ctx, nil
 }
 
-func (s *PaymentService) ChangeStatusFD(answer bool, id string) error {
+func (s *PaymentService) ChangeStatusFD(answer bool, id, paymentType string) error {
 
 	orderClientFD, conn, ctx, err := s.CreateConnectionFD()
 	if err != nil {
@@ -31,8 +30,9 @@ func (s *PaymentService) ChangeStatusFD(answer bool, id string) error {
 	}
 
 	updateOrder := &paymentservice.PaymentResult{
-		Answer:  answer,
-		IdOrder: id,
+		Answer:      answer,
+		IdOrder:     id,
+		PaymentType: paymentType,
 	}
 
 	if _, err = orderClientFD.ChangeStatus(ctx, updateOrder); err != nil {

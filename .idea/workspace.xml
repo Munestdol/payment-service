@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4cbd2b-a82c-494b-b466-fd02a635921a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/payment-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/000001_sql.down.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/000001_sql.down.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/000001_sql.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/000001_sql.up.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/proto/payment.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/proto/payment.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/handler/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/handler/payment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/payment-proto.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/payment-proto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/payment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/paymentservice/payment.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/paymentservice/payment.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/paymentservice/payment_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/paymentservice/payment_grpc.pb.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +26,19 @@
     </option>
   </component>
   <component name="GOROOT" url="file://C:/Program Files/Go" />
+  <component name="Git.Pull.Settings">
+    <option name="OPTIONS">
+      <set>
+        <option value="REBASE" />
+      </set>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
@@ -82,6 +89,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="FD-123" />
+    <MESSAGE value="FD-123(canceled transaction)" />
+    <option name="LAST_COMMIT_MESSAGE" value="FD-123(canceled transaction)" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

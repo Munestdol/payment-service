@@ -14,6 +14,8 @@ definitions:
         type: string
       orderId:
         type: string
+      paymentType:
+        type: string
       totalPrice:
         type: number
       userId:
@@ -24,6 +26,7 @@ definitions:
     - cardNumber
     - cvv
     - orderId
+    - paymentType
     - totalPrice
     - userId
     type: object
@@ -57,9 +60,9 @@ info:
   title: Payment-Service API
   version: "1.0"
 paths:
-  /payment/create:
+  /payment/:
     post:
-      description: Create new transaction
+      description: Make payment
       parameters:
       - description: Payment info
         in: body
@@ -86,7 +89,7 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/handler.response'
-      summary: Create new transaction
+      summary: Make payment
       tags:
       - order
 swagger: "2.0"
