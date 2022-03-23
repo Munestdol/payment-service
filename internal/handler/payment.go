@@ -61,7 +61,7 @@ func (h *Handler) MakePayment(c *gin.Context) {
 		return
 	}
 	switch input.PaymentType {
-	case "cardonline":
+	case "card online":
 		transactInfo, err := h.services.Payment.CreateTrasactions(input)
 		if err != nil {
 			newResponse(c, http.StatusInternalServerError, err.Error())
