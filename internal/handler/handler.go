@@ -24,8 +24,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	payment := router.Group("/payment")
 	{
-
-		payment.POST("/create", h.CreateTransactions)
 		payment.POST("/", h.MakePayment)
 	}
 

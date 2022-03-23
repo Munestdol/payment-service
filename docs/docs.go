@@ -16,16 +16,16 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/payment/create": {
+        "/payment/": {
             "post": {
-                "description": "Create new transaction",
+                "description": "Make payment",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "order"
                 ],
-                "summary": "Create new transaction",
+                "summary": "Make payment",
                 "parameters": [
                     {
                         "description": "Payment info",
@@ -75,6 +75,7 @@ const docTemplate = `{
                 "cardNumber",
                 "cvv",
                 "orderId",
+                "paymentType",
                 "totalPrice",
                 "userId"
             ],
@@ -95,6 +96,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "orderId": {
+                    "type": "string"
+                },
+                "paymentType": {
                     "type": "string"
                 },
                 "totalPrice": {
